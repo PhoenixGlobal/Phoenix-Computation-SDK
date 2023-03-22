@@ -1,0 +1,12 @@
+.vscode
+dashboard-sdk-api
+nohup.out
+*.sh
+docs
+logs
+dashboard-agent
+!dashboard-agent/
+.DS_Store
+.idea
+sdk_test.go
+*.csv
