@@ -3,11 +3,13 @@ package util
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 )
 
@@ -46,6 +48,26 @@ func SendHttpPost(rawURL string, rawBody json.RawMessage, token string) (json.Ra
 	resp, err := (&http.Client{}).Do(req)
 	if err != nil {
 		return nil, err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	return body, nil
+}
+
+func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage) (json.RawMessage, error) {
+	req, err := http.NewRequest("POST", rawURL, strings.NewReader(string(rawBody)))
+	if err != nil {
+		return nil, err
+	}
+	resp, err := (&http.Client{}).Do(req)
+	if err != nil {
+		return nil, err
+	}
+	if resp.StatusCode!=200{
+		return nil,errors.New("Server Error,error code is "+ strconv.Itoa(resp.StatusCode) )
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
