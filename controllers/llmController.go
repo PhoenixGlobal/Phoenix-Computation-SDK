@@ -24,9 +24,9 @@ func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	textMapArr := resultMap["choices"].([]interface{})
-	textMap := textMapArr[0].(map[string]interface{})
-	text := textMap["text"].(string)
+	//textMapArr := resultMap["choices"].([]interface{})
+	//textMap := textMapArr[0].(map[string]interface{})
+	text := resultMap["text"].(string)
 	retResult := common.ResLLM{
 		Code: 200,
 		Msg:  "success",

@@ -7,10 +7,12 @@ import (
 	"io"
 	"io/ioutil"
 	"mime/multipart"
+	"net"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // SendHttpGet send get request
@@ -62,7 +64,21 @@ func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage) (json.RawMessage
 	if err != nil {
 		return nil, err
 	}
-	resp, err := (&http.Client{}).Do(req)
+
+	transport := &http.Transport{
+		DialContext: (&net.Dialer{
+			Timeout:   60 * time.Second,
+			KeepAlive: 60 * time.Second,
+		}).DialContext,
+		MaxIdleConns:        100,
+		IdleConnTimeout:     90 * time.Second,
+		TLSHandshakeTimeout: 60 * time.Second,
+	}
+	client := &http.Client{
+		Timeout:   time.Second * 60,
+		Transport: transport,
+	}
+	resp, err := (client).Do(req)
 	if err != nil {
 		return nil, err
 	}
