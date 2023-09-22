@@ -75,7 +75,7 @@ func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage) (json.RawMessage
 		TLSHandshakeTimeout: 120 * time.Second,
 	}
 	client := &http.Client{
-		Timeout:   time.Second * 60,
+		Timeout:   time.Second * 120,
 		Transport: transport,
 	}
 	resp, err := (client).Do(req)
