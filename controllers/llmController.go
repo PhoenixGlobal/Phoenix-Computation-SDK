@@ -21,13 +21,13 @@ func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
 	}
 	resultMap := make(map[string]interface{})
 	err = json.Unmarshal(result, &resultMap)
-	if err!=nil{
-		return nil,err
+	if err != nil {
+		return nil, err
 	}
-	textMapArr:=resultMap["choices"].([]interface{})
-	textMap:=textMapArr[0].(map[string]interface{})
-	text:=textMap["text"].(string)
-	retResult:=common.ResLLM{
+	textMapArr := resultMap["choices"].([]interface{})
+	textMap := textMapArr[0].(map[string]interface{})
+	text := textMap["text"].(string)
+	retResult := common.ResLLM{
 		Code: 200,
 		Msg:  "success",
 		Text: text,
@@ -37,4 +37,27 @@ func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
 		return nil, err
 	}
 	return res, err
+}
+
+const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
+const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
+
+func CreateLLMJob(reqBody common.ReqCreateLlmJob, token string) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(CreateLLMJobURL, reqJson, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func QueryLLMPrice() (json.RawMessage, error) {
+	result, err := util.SendHttpGet(QueryLLMPriceURL, nil, "")
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
 }
