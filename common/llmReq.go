@@ -15,6 +15,6 @@ type ResLLM struct {
 }
 
 type ReqCreateLlmJob struct {
-	JobName string `json:"jobName" example:"Millionaires' Problem"` //job name
-	Count   int64  `json:"count"`                                   //本次购买llm对话次数
+	JobName   string `json:"jobName" example:"Millionaires' Problem"` //job name
+	TokensNum int64  `json:"tokensNum"`                               //本次购买llm对话次数
 }

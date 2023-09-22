@@ -18,10 +18,10 @@ func TestCallLLM(t *testing.T) {
 }
 
 func TestCreateLLMJob(t *testing.T) {
-	reqBody := common.ReqCreateLlmJob{JobName: "LLM test11", Count: 1}
-	reqToken := common.ReqGenToken{Email: "515588290@qq.com", Passwd: "111"}
+	reqBody := common.ReqCreateLlmJob{JobName: "zckLLM", TokensNum: 7}
+	reqToken := common.ReqGenToken{Email: "xxx@xx.com", Passwd: "xxx"}
 	token, _ := GenToken(reqToken)
 	fmt.Println("tk=", string(token))
-	res, _ := CreateLLMJob(reqBody, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjUxNTU4ODI5MEBxcS5jb20iLCJleHAiOjE2OTUzNjMzODl9.f3uO27mpkAsG-oMgzc4pDuE_sGGrn4UMO7sdH_-xtUU")
+	res, _ := CreateLLMJob(reqBody, "xxx")
 	fmt.Println("res", string(res))
 }
