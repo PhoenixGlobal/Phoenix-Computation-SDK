@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 	"testing"
@@ -18,10 +19,39 @@ func TestCallLLM(t *testing.T) {
 }
 
 func TestCreateLLMJob(t *testing.T) {
-	reqBody := common.ReqCreateLlmJob{JobName: "zckLLM", TokensNum: 7}
-	reqToken := common.ReqGenToken{Email: "xxx@xx.com", Passwd: "xxx"}
+	reqBody := common.ReqCreateLlmJob{
+		JobName:   "zckLLM115",
+		TokensNum: 7}
+	reqToken := common.ReqGenToken{
+		Email:  "xxx@gmail.com",
+		Passwd: "xxxxxx"}
 	token, _ := GenToken(reqToken)
-	fmt.Println("tk=", string(token))
-	res, _ := CreateLLMJob(reqBody, "xxx")
+	tokenMap := make(map[string]interface{})
+	err := json.Unmarshal(token, &tokenMap)
+	if err != nil {
+		fmt.Println("err=", err)
+	}
+	tokenStr := tokenMap["token"].(string)
+
+	res, _ := CreateLLMJob(reqBody, tokenStr)
 	fmt.Println("res", string(res))
+}
+
+func TestQueryLLMPrice(t *testing.T) {
+	reqToken := common.ReqGenToken{
+		Email:  "xxx@gmail.com",
+		Passwd: "xxxxxx"}
+	token, _ := GenToken(reqToken)
+	tokenMap := make(map[string]interface{})
+	err := json.Unmarshal(token, &tokenMap)
+	if err != nil {
+		fmt.Println("err=", err)
+	}
+	tokenStr := tokenMap["token"].(string)
+
+	resPrice, _ := QueryLLMPrice(tokenStr)
+	priceMap := make(map[string]interface{})
+	err = json.Unmarshal(resPrice, &priceMap)
+	priceStr := priceMap["price"].(string)
+	fmt.Println("price=", priceStr)
 }

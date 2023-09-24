@@ -54,8 +54,8 @@ func CreateLLMJob(reqBody common.ReqCreateLlmJob, token string) (json.RawMessage
 	return result, nil
 }
 
-func QueryLLMPrice() (json.RawMessage, error) {
-	result, err := util.SendHttpGet(QueryLLMPriceURL, nil, "")
+func QueryLLMPrice(token string) (json.RawMessage, error) {
+	result, err := util.SendHttpGet(QueryLLMPriceURL, nil, token)
 	if err != nil {
 		return nil, err
 	}
