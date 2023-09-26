@@ -55,3 +55,15 @@ func TestQueryLLMPrice(t *testing.T) {
 	priceStr := priceMap["price"].(string)
 	fmt.Println("price=", priceStr)
 }
+
+func TestQueryLLMBuyCount(t *testing.T) {
+	tokenStr := "XXXXXXXXXXXXX"
+
+	res, err := QueryLLMBuyCount(tokenStr)
+	resultMap := make(map[string]interface{})
+	fmt.Println(11111,resultMap,err)
+	err = json.Unmarshal(res, &resultMap)
+	dataMap:=resultMap["data"].(map[string]interface{})
+	buyCount := dataMap["count"].(float64)
+	fmt.Println(22222,buyCount,err)
+}

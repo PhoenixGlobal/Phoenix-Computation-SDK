@@ -12,6 +12,7 @@ type ResLLM struct {
 	Code int    `json:"code"`
 	Msg  string `json:"msg"`
 	Text string `json:"text"`
+	TokensBalance float64 `json:"tokens_balance"`
 }
 
 type ReqCreateLlmJob struct {
