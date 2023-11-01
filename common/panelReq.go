@@ -41,3 +41,38 @@ type ReqDownloadDataset struct {
 	JobID       string `josn:"jobID" example:"65573937761644746890524415817246033372115830624452900918578145256037962235724"` //job id, non-null
 	DatasetType string `json:"datasetType" example:"feature,target,testing"`                                                  //dataset type，one of feature, target, testing
 }
+
+// ReqQueryFlops query flops
+type ReqQueryFlops struct {
+	JobName        string  `json:"jobName" example:"CNN Classification"` //job name
+	TrainData      string  `json:"x_train"`
+	TrainLable     string  `json:"y_train"`
+	Epoch          uint    `json:"epoch" example:"2"`
+	Model          string  `json:"model" example:"CNN,LSTM"`
+	TrainShard     float64 `json:"train_shard" example:"0.8"`
+	ScaleRatio     int     `json:"scale_ratio"`
+	InputWidth     int     `json:"input_width"`
+	LabelWidth     int     `json:"label_width"`
+	Shift          int     `json:"shift"`
+	SequenceStride int     `json:"sequence_stride"`
+	SamplingRate   int     `json:"sampling_rate"`
+}
+
+// ReqCreateAIJob the request parameters of createAIJob
+type ReqCreateAIJob struct {
+	JobName        string  `json:"jobName" example:"CNN Classification"` //job name
+	Computation    string  `json:"computation" example:"Distributed AI"` //computation type
+	TrainData      string  `json:"x_train"`
+	TrainLable     string  `json:"y_train"`
+	BatchSize      uint    `json:"batchSize" example:"64"`
+	Epoch          uint    `json:"epoch" example:"2"`
+	Model          string  `json:"model" example:"CNN,LSTM"`
+	TrainShard     float64 `json:"train_shard" example:"0.8"`
+	CcdCost        float64 `json:"ccd_cost"` //ccd cost
+	ScaleRatio     int     `json:"scale_ratio"`
+	InputWidth     int     `json:"input_width"`
+	LabelWidth     int     `json:"label_width"`
+	Shift          int     `json:"shift"`
+	SequenceStride int     `json:"sequence_stride"`
+	SamplingRate   int     `json:"sampling_rate"`
+}

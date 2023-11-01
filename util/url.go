@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"net"
 	"net/http"
@@ -34,7 +33,7 @@ func SendHttpGet(rawURL string, params url.Values, token string) (json.RawMessag
 		return nil, err
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +51,7 @@ func SendHttpPost(rawURL string, rawBody json.RawMessage, token string) (json.Ra
 		return nil, err
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -82,11 +81,11 @@ func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage) (json.RawMessage
 	if err != nil {
 		return nil, err
 	}
-	if resp.StatusCode!=200{
-		return nil,errors.New("Server Error,error code is "+ strconv.Itoa(resp.StatusCode) )
+	if resp.StatusCode != 200 {
+		return nil, errors.New("Server Error,error code is " + strconv.Itoa(resp.StatusCode))
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +109,7 @@ func SendPostMultiPart(rawURL string, body_buf *bytes.Buffer, body_writer *multi
 		return nil, err
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}

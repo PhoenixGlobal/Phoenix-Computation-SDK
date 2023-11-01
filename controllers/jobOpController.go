@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"mime/multipart"
+	"os"
 
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/util"
@@ -14,6 +15,8 @@ const CreateInputJobURL string = "https://www.phoenix.global/sdk/computation/pan
 const CreateFileJobURL string = "https://www.phoenix.global/sdk/computation/panel/createJobByFile"
 const FillDataURL string = "https://www.phoenix.global/sdk/computation/panel/fillData"
 const DeleteJobURL string = "https://www.phoenix.global/sdk/computation/panel/deleteJobByUser"
+const UploadFileURL string = "https://www.phoenix.global/sdk/computation/deAI/uploadFile"
+const CreateAIJobURL string = "https://www.phoenix.global/sdk/computation/deAI/createJob"
 
 // CreateJobByInput Create a job of input type
 func CreateJobByInput(reqBody common.ReqCreateJobByInput, token string) (json.RawMessage, error) {
@@ -99,6 +102,41 @@ func DeleteJobByUser(reqBody common.ReqDeleteJobByUser, token string) (json.RawM
 		return nil, err
 	}
 	result, err := util.SendHttpPost(DeleteJobURL, reqJson, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// UploadDeAIFile Upload file
+func UploadDeAIFile(fileName string, token string) (json.RawMessage, error) {
+	body_buf := bytes.NewBufferString("")
+	body_writer := multipart.NewWriter(body_buf)
+	boundary := body_writer.Boundary()
+	body_writer.SetBoundary(boundary)
+	_, err := body_writer.CreateFormFile("file", fileName)
+	if err != nil {
+		return nil, err
+	}
+	fileData, err := os.ReadFile(fileName)
+	if err != nil {
+		return nil, err
+	}
+	body_buf.Write(fileData)
+	body_writer.Close()
+	result, err := util.SendPostMultiPart(UploadFileURL, body_buf, body_writer, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func CreateAIJob(reqBody common.ReqCreateAIJob, token string) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(CreateAIJobURL, reqJson, token)
 	if err != nil {
 		return nil, err
 	}
