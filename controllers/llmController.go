@@ -7,7 +7,7 @@ import (
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 )
 
-const LlmApiURL string = "https://www.phoenix.global/sdk/llm/v1/completions"
+const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMCount"
@@ -18,34 +18,11 @@ func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(LlmApiURL, reqJson)
+	result, err := util.SendHttpPost(CallLLMURL, reqJson,reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
-	resultMap := make(map[string]interface{})
-	err = json.Unmarshal(result, &resultMap)
-	if err != nil {
-		return nil, err
-	}
-	//textMapArr := resultMap["choices"].([]interface{})
-	//textMap := textMapArr[0].(map[string]interface{})
-	text := resultMap["text"].(string)
-	useTotalTokens := resultMap["useTotalTokens"].(float64)
-	buyTokens,err:=GetLLMBuyCount(reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	retResult := common.ResLLM{
-		Code: 200,
-		Msg:  "success",
-		Text: text,
-		TokensBalance: buyTokens-useTotalTokens,
-	}
-	res, err := json.Marshal(retResult)
-	if err != nil {
-		return nil, err
-	}
-	return res, err
+	return result, nil
 }
 
 func CreateLLMJob(reqBody common.ReqCreateLlmJob, token string) (json.RawMessage, error) {
