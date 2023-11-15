@@ -15,6 +15,9 @@ const ResultListURL string = "https://www.phoenix.global/sdk/computation/panel/s
 const CcdUsageURL string = "https://www.phoenix.global/sdk/computation/panel/ccdUsageList"
 const DownloadDatasetURL string = "https://www.phoenix.global/sdk/computation/panel/downloadDataset"
 const QueryCcdCostURL string = "https://www.phoenix.global/sdk/computation/deAI/queryGuarantee"
+const QueryInferCostURL string = "https://www.phoenix.global/sdk/computation/deAI/inferenceCost"
+const QueryInferURL string = "https://www.phoenix.global/sdk/computation/deAI/queryInfer"
+const QueryInferListURL string = "https://www.phoenix.global/sdk/computation/deAI/queryInferList"
 
 func JobListByUser(reqBody common.ReqPage, token string) (json.RawMessage, error) {
 	reqJson, err := json.Marshal(reqBody)
@@ -93,6 +96,42 @@ func QueryAICcdCost(reqBody common.ReqQueryFlops, token string) (json.RawMessage
 		return nil, err
 	}
 	result, err := util.SendHttpPost(QueryCcdCostURL, reqJson, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func QueryInferCost(reqBody common.ReqInferenceCost, token string) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(QueryInferCostURL, reqJson, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func QueryInference(reqBody common.ReqQueryInferByID, token string) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(QueryInferURL, reqJson, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func QueryInferList(reqBody common.ReqQueryInfer, token string) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(QueryInferListURL, reqJson, token)
 	if err != nil {
 		return nil, err
 	}

@@ -76,3 +76,25 @@ type ReqCreateAIJob struct {
 	SequenceStride int     `json:"sequence_stride"`
 	SamplingRate   int     `json:"sampling_rate"`
 }
+
+// ReqInferenceCost the request parameters of queryInferCost
+type ReqInferenceCost struct {
+	JobID    string `json:"jobID" example:"65573937761644746890524415817246033372115830624452900918578145256037962235724"` //job id
+	DataPath string `json:"data_path"`                                                                                     //data file
+}
+
+// ReqInference the request parameters of inference
+type ReqInference struct {
+	JobID string `json:"jobID" example:"65573937761644746890524415817246033372115830624452900918578145256037962235724"` //job id
+}
+
+// ReqQueryInferByID query infer by id
+type ReqQueryInferByID struct {
+	ID int64 // inference id
+}
+
+// ReqQueryInfer the requesting parameters of querying reference list
+type ReqQueryInfer struct {
+	*ReqPage
+	JobID string `json:"jobID" example:"65573937761644746890524415817246033372115830624452900918578145256037962235724"` //job id
+}

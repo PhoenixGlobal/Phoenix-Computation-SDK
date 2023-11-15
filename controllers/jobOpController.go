@@ -17,6 +17,7 @@ const FillDataURL string = "https://www.phoenix.global/sdk/computation/panel/fil
 const DeleteJobURL string = "https://www.phoenix.global/sdk/computation/panel/deleteJobByUser"
 const UploadFileURL string = "https://www.phoenix.global/sdk/computation/deAI/uploadFile"
 const CreateAIJobURL string = "https://www.phoenix.global/sdk/computation/deAI/createJob"
+const InferenceJobURL string = "https://www.phoenix.global/sdk/computation/deAI/inference"
 
 // CreateJobByInput Create a job of input type
 func CreateJobByInput(reqBody common.ReqCreateJobByInput, token string) (json.RawMessage, error) {
@@ -137,6 +138,18 @@ func CreateAIJob(reqBody common.ReqCreateAIJob, token string) (json.RawMessage, 
 		return nil, err
 	}
 	result, err := util.SendHttpPost(CreateAIJobURL, reqJson, token)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func InferenceJob(reqBody common.ReqInference, token string) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(InferenceJobURL, reqJson, token)
 	if err != nil {
 		return nil, err
 	}
