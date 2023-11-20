@@ -49,6 +49,8 @@ type ReqQueryFlops struct {
 	TrainLable     string  `json:"y_train"`
 	Epoch          uint    `json:"epoch" example:"2"`
 	Model          string  `json:"model" example:"CNN,LSTM"`
+	Category       int     `json:"category"`
+	Channel        int     `json:"channel"`
 	TrainShard     float64 `json:"train_shard" example:"0.8"`
 	ScaleRatio     int     `json:"scale_ratio"`
 	InputWidth     int     `json:"input_width"`
@@ -60,21 +62,9 @@ type ReqQueryFlops struct {
 
 // ReqCreateAIJob the request parameters of createAIJob
 type ReqCreateAIJob struct {
-	JobName        string  `json:"jobName" example:"CNN Classification"` //job name
-	Computation    string  `json:"computation" example:"Distributed AI"` //computation type
-	TrainData      string  `json:"x_train"`
-	TrainLable     string  `json:"y_train"`
-	BatchSize      uint    `json:"batchSize" example:"64"`
-	Epoch          uint    `json:"epoch" example:"2"`
-	Model          string  `json:"model" example:"CNN,LSTM"`
-	TrainShard     float64 `json:"train_shard" example:"0.8"`
-	CcdCost        float64 `json:"ccd_cost"` //ccd cost
-	ScaleRatio     int     `json:"scale_ratio"`
-	InputWidth     int     `json:"input_width"`
-	LabelWidth     int     `json:"label_width"`
-	Shift          int     `json:"shift"`
-	SequenceStride int     `json:"sequence_stride"`
-	SamplingRate   int     `json:"sampling_rate"`
+	JobName     string `json:"jobName" example:"CNN Classification"` //job name
+	Computation string `json:"computation" example:"Distributed AI"` //computation type
+	BatchSize   uint   `json:"batchSize" example:"64"`
 }
 
 // ReqInferenceCost the request parameters of queryInferCost
