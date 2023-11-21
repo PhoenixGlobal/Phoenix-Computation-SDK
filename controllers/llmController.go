@@ -11,6 +11,7 @@ const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLL
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMCount"
+const QueryLLMTokensBalanceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMTokensBalance"
 
 // CallLLM  call LLM api
 func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
@@ -66,5 +67,21 @@ func GetLLMBuyCount(token string) (count float64,e error)  {
 	}
 	dataMap:=resultMap["data"].(map[string]interface{})
 	count = dataMap["count"].(float64)
+	return
+}
+
+func QueryLLMTokensBalance(token string) (llmTokens float64,e error)  {
+	result, err := util.SendHttpGet(QueryLLMTokensBalanceURL, nil, token)
+	if err != nil {
+		e = err
+		return
+	}
+	resultMap := make(map[string]interface{})
+	e = json.Unmarshal(result, &resultMap)
+	if e!=nil{
+		return
+	}
+	dataMap:=resultMap["data"].(map[string]interface{})
+	llmTokens = dataMap["llmTokens"].(float64)
 	return
 }
