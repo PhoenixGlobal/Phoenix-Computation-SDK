@@ -83,7 +83,12 @@ func QueryLLMTokensBalance(token string) (llmTokens float64,e error)  {
 		return
 	}
 	dataMap:=resultMap["data"].(map[string]interface{})
-	llmTokens = dataMap["llmTokens"].(float64)
+	llmTokens0 := dataMap["llmTokens"].(float64)
+	freeTokens,e:=QueryLLMFreeTokensBalance(token)
+	if e!=nil{
+		return
+	}
+	llmTokens= llmTokens0+ freeTokens
 	return
 }
 
