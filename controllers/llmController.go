@@ -10,7 +10,7 @@ import (
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
-const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMCount"
+const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMActualCount"
 const QueryLLMTokensBalanceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMTokensBalance"
 
 // CallLLM  call LLM api
