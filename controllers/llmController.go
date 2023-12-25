@@ -2,12 +2,14 @@ package controllers
 
 import (
 	"encoding/json"
+
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/util"
 
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 )
 
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
+const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenImage"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMCount"
@@ -18,7 +20,7 @@ func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPost(CallLLMURL, reqJson,reqBody.UserToken)
+	result, err := util.SendHttpPost(CallLLMURL, reqJson, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -53,18 +55,31 @@ func QueryLLMBuyCount(token string) (json.RawMessage, error) {
 	return result, nil
 }
 
-func GetLLMBuyCount(token string) (count float64,e error)  {
+func GetLLMBuyCount(token string) (count float64, e error) {
 	res, err := QueryLLMBuyCount(token)
-	if err!=nil{
-		e=err
+	if err != nil {
+		e = err
 		return
 	}
 	resultMap := make(map[string]interface{})
 	e = json.Unmarshal(res, &resultMap)
-	if e!=nil{
+	if e != nil {
 		return
 	}
-	dataMap:=resultMap["data"].(map[string]interface{})
+	dataMap := resultMap["data"].(map[string]interface{})
 	count = dataMap["count"].(float64)
 	return
+}
+
+// GenImage  call LLM api
+func GenImage(reqBody common.ReqGenImage) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(GenImageURL, reqJson, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
 }

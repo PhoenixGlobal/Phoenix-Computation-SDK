@@ -8,10 +8,18 @@ type ReqLLM struct {
 	UserToken    string  `json:"user_token" example:"xxxxxxxxxxxx"`    //user_token, not empty
 }
 
+// ReqGenImage genImage request parameters
+type ReqGenImage struct {
+	UidName       string `json:"uidname" example:"111@gmail.com"`
+	Prompt        string `json:"prompt"`                            //prompt, not empty
+	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
+	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+}
+
 type ResLLM struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
-	Text string `json:"text"`
+	Code          int     `json:"code"`
+	Msg           string  `json:"msg"`
+	Text          string  `json:"text"`
 	TokensBalance float64 `json:"tokens_balance"`
 }
 
