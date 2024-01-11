@@ -10,6 +10,7 @@ import (
 
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenImage"
+const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMActualCount"
@@ -105,13 +106,26 @@ func QueryLLMFreeTokensBalance(token string) (llmTokens float64, e error) {
 	return
 }
 
-// GenImage  call LLM api
+// GenImage  call gen image api
 func GenImage(reqBody common.ReqGenImage) (json.RawMessage, error) {
 	reqJson, err := json.Marshal(reqBody)
 	if err != nil {
 		return nil, err
 	}
 	result, err := util.SendHttpPost(GenImageURL, reqJson, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// GenSDXLImage  call gen SDXL image api
+func GenSDXLImage(reqBody common.ReqGenSDXLImage) (json.RawMessage, error) {
+	reqJSON, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(GenSDXLImageURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}

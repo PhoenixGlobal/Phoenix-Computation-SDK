@@ -20,3 +20,15 @@ type ReqGenImage struct {
 	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
 	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
 }
+
+// ReqGenSDXLImage gen SDXL image request parameters
+type ReqGenSDXLImage struct {
+	UidName         string  `json:"uidname" example:"111@gmail.com"`
+	Prompt          string  `json:"prompt" example:"a blue dog"`       //prompt, not empty
+	NegativePromt   string  `json:"negative_prompt"`                   //tokens, not empty
+	UserToken       string  `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	NSteps          int     `json:"n_steps" example:"20"`
+	GuidanceRescale float64 `json:"guidance_rescale" example:"8"`  // float, 0 to 10
+	HighNoiseFrac   float64 `json:"high_noise_frac" example:"0.8"` // float, 0 to 1
+	Seed            int     `json:"seed" example:"1"`              // int, >0
+}
