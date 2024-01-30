@@ -11,6 +11,7 @@ import (
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenImage"
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
+const TextToVideoURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToVideo"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMActualCount"
@@ -126,6 +127,19 @@ func GenSDXLImage(reqBody common.ReqGenSDXLImage) (json.RawMessage, error) {
 		return nil, err
 	}
 	result, err := util.SendHttpPost(GenSDXLImageURL, reqJSON, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// TextToVideo  call text to video api
+func TextToVideo(reqBody common.ReqTextToVideo) (json.RawMessage, error) {
+	reqJSON, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPost(TextToVideoURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}

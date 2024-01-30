@@ -32,3 +32,11 @@ type ReqGenSDXLImage struct {
 	HighNoiseFrac   float64 `json:"high_noise_frac" example:"0.8"` // float, 0 to 1
 	Seed            int     `json:"seed" example:"1"`              // int, >0
 }
+
+// ReqTextToVideo TextToVideo request parameters
+type ReqTextToVideo struct {
+	UidName       string `json:"uidname" example:"111@gmail.com"`
+	Prompt        string `json:"prompt"`                            //prompt, not empty
+	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
+	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+}
