@@ -133,8 +133,8 @@ func GenSDXLImage(reqBody common.ReqGenSDXLImage) (json.RawMessage, error) {
 	return result, nil
 }
 
-// TextToVideo  call text to video api
-func TextToVideo(reqBody common.ReqTextToVideo) (json.RawMessage, error) {
+// TextToMotion  call text to motion api
+func TextToMotion(reqBody common.ReqTextToMotion) (json.RawMessage, error) {
 	reqJSON, err := json.Marshal(reqBody)
 	if err != nil {
 		return nil, err

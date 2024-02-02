@@ -33,8 +33,8 @@ type ReqGenSDXLImage struct {
 	Seed            int     `json:"seed" example:"1"`              // int, >0
 }
 
-// ReqTextToVideo TextToVideo request parameters
-type ReqTextToVideo struct {
+// ReqTextToMotion TextToMotion request parameters
+type ReqTextToMotion struct {
 	UidName       string `json:"uidname" example:"111@gmail.com"`
 	Prompt        string `json:"prompt"`                            //prompt, not empty
 	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
