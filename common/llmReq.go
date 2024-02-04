@@ -15,7 +15,6 @@ type ReqCreateLlmJob struct {
 
 // ReqGenImage genImage request parameters
 type ReqGenImage struct {
-	UidName       string `json:"uidname" example:"111@gmail.com"`
 	Prompt        string `json:"prompt"`                            //prompt, not empty
 	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
 	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
@@ -23,7 +22,6 @@ type ReqGenImage struct {
 
 // ReqGenSDXLImage gen SDXL image request parameters
 type ReqGenSDXLImage struct {
-	UidName         string  `json:"uidname" example:"111@gmail.com"`
 	Prompt          string  `json:"prompt" example:"a blue dog"`       //prompt, not empty
 	NegativePromt   string  `json:"negative_prompt"`                   //tokens, not empty
 	UserToken       string  `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
@@ -35,7 +33,6 @@ type ReqGenSDXLImage struct {
 
 // ReqTextToMotion TextToMotion request parameters
 type ReqTextToMotion struct {
-	UidName       string `json:"uidname" example:"111@gmail.com"`
 	Prompt        string `json:"prompt"`                            //prompt, not empty
 	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
 	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty

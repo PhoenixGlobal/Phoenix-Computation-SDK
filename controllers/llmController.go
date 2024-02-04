@@ -11,7 +11,7 @@ import (
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenImage"
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
-const TextToVideoURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToVideo"
+const TextToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToMotion"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMActualCount"
@@ -139,7 +139,7 @@ func TextToMotion(reqBody common.ReqTextToMotion) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPost(TextToVideoURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHttpPost(TextToMotionURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
