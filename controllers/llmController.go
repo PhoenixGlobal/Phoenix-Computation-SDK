@@ -24,7 +24,7 @@ func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPost(CallLLMURL, reqJson, reqBody.UserToken)
+	result, err := util.SendHttpPostForLLM(CallLLMURL, reqJson, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func GenImage(reqBody common.ReqGenImage) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPost(GenImageURL, reqJson, reqBody.UserToken)
+	result, err := util.SendHttpPostForLLM(GenImageURL, reqJson, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +126,7 @@ func GenSDXLImage(reqBody common.ReqGenSDXLImage) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPost(GenSDXLImageURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHttpPostForLLM(GenSDXLImageURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -139,7 +139,7 @@ func TextToMotion(reqBody common.ReqTextToMotion) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPost(TextToMotionURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHttpPostForLLM(TextToMotionURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}

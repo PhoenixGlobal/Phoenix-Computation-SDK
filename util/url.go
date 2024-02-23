@@ -58,11 +58,12 @@ func SendHttpPost(rawURL string, rawBody json.RawMessage, token string) (json.Ra
 	return body, nil
 }
 
-func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage) (json.RawMessage, error) {
+func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage, token string) (json.RawMessage, error) {
 	req, err := http.NewRequest("POST", rawURL, strings.NewReader(string(rawBody)))
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("token", token)
 
 	transport := &http.Transport{
 		DialContext: (&net.Dialer{
