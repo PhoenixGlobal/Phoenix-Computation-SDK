@@ -11,6 +11,7 @@ import (
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenImage"
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
+const GenSDXLParamURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLParam"
 const TextToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToMotion"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
@@ -127,6 +128,19 @@ func GenSDXLImage(reqBody common.ReqGenSDXLImage) (json.RawMessage, error) {
 		return nil, err
 	}
 	result, err := util.SendHttpPostForLLM(GenSDXLImageURL, reqJSON, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// GenSDXLParam  call gen SDXL image api
+func GenSDXLParam(reqBody common.ReqGenSDXLParam) (json.RawMessage, error) {
+	reqJSON, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPostForLLM(GenSDXLParamURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
