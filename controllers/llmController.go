@@ -13,6 +13,7 @@ const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callG
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
 const GenSDXLParamURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLParam"
 const TextToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToMotion"
+const ImgToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callImgToMotion"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMActualCount"
@@ -154,6 +155,19 @@ func TextToMotion(reqBody common.ReqTextToMotion) (json.RawMessage, error) {
 		return nil, err
 	}
 	result, err := util.SendHttpPostForLLM(TextToMotionURL, reqJSON, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// ImgToMotion  call img to motion api
+func ImgToMotion(reqBody common.ReqImgToMotion) (json.RawMessage, error) {
+	reqJSON, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPostForLLM(ImgToMotionURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}

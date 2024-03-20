@@ -67,15 +67,15 @@ func SendHttpPostForLLM(rawURL string, rawBody json.RawMessage, token string) (j
 
 	transport := &http.Transport{
 		DialContext: (&net.Dialer{
-			Timeout:   120 * time.Second,
-			KeepAlive: 120 * time.Second,
+			Timeout:   180 * time.Second,
+			KeepAlive: 180 * time.Second,
 		}).DialContext,
 		MaxIdleConns:        100,
-		IdleConnTimeout:     120 * time.Second,
-		TLSHandshakeTimeout: 120 * time.Second,
+		IdleConnTimeout:     180 * time.Second,
+		TLSHandshakeTimeout: 180 * time.Second,
 	}
 	client := &http.Client{
-		Timeout:   time.Second * 120,
+		Timeout:   time.Second * 180,
 		Transport: transport,
 	}
 	resp, err := (client).Do(req)

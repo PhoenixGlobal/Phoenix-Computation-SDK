@@ -48,6 +48,13 @@ type ReqTextToMotion struct {
 	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
 }
 
+// ReqImgToMotion ImgToMotion request parameters
+type ReqImgToMotion struct {
+	Prompt    string `json:"prompt"`                            //prompt, not empty
+	ImagePath string `json:"image_path"`                        //image path, not empty
+	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+}
+
 // ReqGenSDXLParam gen SDXL by parameters
 type ReqGenSDXLParam struct {
 	UidName              string  `json:"uidname" example:"111@gmail.com"`
@@ -64,4 +71,6 @@ type ReqGenSDXLParam struct {
 	LoraScale            float64 `json:"lora_scale" example:"0.8"`
 	Size                 string  `json:"size" example:"1024^*^1024"`
 	ClipSkip             int     `json:"clip_skip" example:"1"`
+	InitImage            string  `json:"init_image" example:"https://xxx.jpg"`
+	MaskImage            string  `json:"mask_image" example:"https://xxx.jpg"`
 }
