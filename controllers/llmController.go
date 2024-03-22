@@ -9,7 +9,7 @@ import (
 )
 
 const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
-const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenImage"
+const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenBaseParam"
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
 const GenSDXLParamURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLParam"
 const TextToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToMotion"

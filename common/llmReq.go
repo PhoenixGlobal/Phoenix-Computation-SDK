@@ -28,6 +28,8 @@ type ReqGenImage struct {
 	LoraScale            float64 `json:"lora_scale" example:"0.8"`
 	Size                 string  `json:"size" example:"512^*^512"`
 	ClipSkip             int     `json:"clip_skip" example:"1"`
+	InitImage            string  `json:"init_image" example:"https://xxx.jpg"`
+	MaskImage            string  `json:"mask_image" example:"https://xxx.jpg"`
 }
 
 // ReqGenSDXLImage gen SDXL image request parameters
