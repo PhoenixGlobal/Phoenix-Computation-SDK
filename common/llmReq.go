@@ -76,3 +76,10 @@ type ReqGenSDXLParam struct {
 	InitImage            string  `json:"init_image" example:"https://xxx.jpg"`
 	MaskImage            string  `json:"mask_image" example:"https://xxx.jpg"`
 }
+
+// ReqImgToPrompt ImgToPrompt parameters
+type ReqImgToPrompt struct {
+	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"`    //user_token, not empty
+	ImagePath string `json:"image_path" example:"https://xxx.jpg"` //image path, not empty
+	Prompt    string `json:"prompt" example:"Funniest joke ever:"` //prompt, not empty
+}

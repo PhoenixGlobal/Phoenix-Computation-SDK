@@ -14,6 +14,7 @@ const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/c
 const GenSDXLParamURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLParam"
 const TextToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callTextToMotion"
 const ImgToMotionURL string = "https://www.phoenix.global/sdk/computation/LLM/callImgToMotion"
+const ImgToPromptURL string = "https://www.phoenix.global/sdk/computation/LLM/imgToPrompt"
 const CreateLLMJobURL string = "https://www.phoenix.global/sdk/computation/LLM/createLLMJob"
 const QueryLLMPriceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMPrice"
 const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMActualCount"
@@ -168,6 +169,19 @@ func ImgToMotion(reqBody common.ReqImgToMotion) (json.RawMessage, error) {
 		return nil, err
 	}
 	result, err := util.SendHttpPostForLLM(ImgToMotionURL, reqJSON, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// ImgToPrompt  call img to prompt api
+func ImgToPrompt(reqBody common.ReqImgToPrompt) (json.RawMessage, error) {
+	reqJSON, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPostForLLM(ImgToPromptURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
