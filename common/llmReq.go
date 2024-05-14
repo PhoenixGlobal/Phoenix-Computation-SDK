@@ -52,7 +52,6 @@ type ReqTextToMotion struct {
 
 // ReqImgToMotion ImgToMotion request parameters
 type ReqImgToMotion struct {
-	Prompt    string `json:"prompt"`                            //prompt, not empty
 	ImagePath string `json:"image_path"`                        //image path, not empty
 	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
 }
