@@ -8,6 +8,13 @@ type ReqLLM struct {
 	UserToken    string  `json:"user_token" example:"xxxxxxxxxxxx"`    //user_token, not empty
 }
 
+// ReqLLM3  LLM llama3 request parameters
+type ReqLLM3 struct {
+	Prompt       string `json:"prompt" example:"Funniest joke ever:"` //prompt, not empty
+	MaxNewTokens int    `json:"max_new_tokens" example:"200"`         //tokens, not empty
+	UserToken    string `json:"user_token" example:"xxxxxxxxxxxx"`    //user_token, not empty
+}
+
 type ReqCreateLlmJob struct {
 	JobName   string `json:"jobName" example:"Millionaires' Problem"` //job name
 	TokensNum int64  `json:"tokensNum"`                               //本次购买llm对话次数
