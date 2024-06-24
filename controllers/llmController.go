@@ -87,8 +87,14 @@ func GetLLMBuyCount(token string) (count float64, e error) {
 	if e != nil {
 		return
 	}
-	dataMap := resultMap["data"].(map[string]interface{})
-	count = dataMap["count"].(float64)
+	dataMap, ok := resultMap["data"].(map[string]interface{})
+	if !ok {
+		return
+	}
+	count, ok = dataMap["count"].(float64)
+	if !ok {
+		return
+	}
 	return
 }
 
@@ -103,8 +109,14 @@ func QueryLLMTokensBalance(token string) (llmTokens float64, e error) {
 	if e != nil {
 		return
 	}
-	dataMap := resultMap["data"].(map[string]interface{})
-	llmTokens = dataMap["llmTokens"].(float64)
+	dataMap, ok := resultMap["data"].(map[string]interface{})
+	if !ok {
+		return
+	}
+	llmTokens, ok = dataMap["llmTokens"].(float64)
+	if !ok {
+		return
+	}
 	return
 }
 
@@ -119,8 +131,14 @@ func QueryLLMFreeTokensBalance(token string) (llmTokens float64, e error) {
 	if e != nil {
 		return
 	}
-	dataMap := resultMap["data"].(map[string]interface{})
-	llmTokens = dataMap["llmTokens"].(float64)
+	dataMap, ok := resultMap["data"].(map[string]interface{})
+	if !ok {
+		return
+	}
+	llmTokens, ok = dataMap["llmTokens"].(float64)
+	if !ok {
+		return
+	}
 	return
 }
 
