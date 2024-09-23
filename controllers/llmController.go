@@ -8,7 +8,7 @@ import (
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 )
 
-const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
+//const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const CallLLMURL3 string = "https://www.phoenix.global/sdk/computation/LLM/callLLM3"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenBaseParam"
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
@@ -22,18 +22,18 @@ const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/
 const QueryLLMTokensBalanceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMTokensBalance"
 const QueryLLMFreeTokensBalanceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMFreeTokensBalance"
 
-// CallLLM  call LLM api
-func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
-	reqJson, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHttpPostForLLM(CallLLMURL, reqJson, reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
+//// CallLLM  call LLM api
+//func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
+//	reqJson, err := json.Marshal(reqBody)
+//	if err != nil {
+//		return nil, err
+//	}
+//	result, err := util.SendHttpPostForLLM(CallLLMURL, reqJson, reqBody.UserToken)
+//	if err != nil {
+//		return nil, err
+//	}
+//	return result, nil
+//}
 
 // CallLLM3  call LLM api
 func CallLLM3(reqBody common.ReqLLM3) (json.RawMessage, error) {

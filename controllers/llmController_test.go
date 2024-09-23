@@ -8,14 +8,13 @@ import (
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 )
 
-func TestCallLLM(t *testing.T) {
-	reqBody := common.ReqLLM{
+func TestCallLLM3(t *testing.T) {
+	reqBody := common.ReqLLM3{
 		Prompt:       "Funniest joke ever:",
-		Temperature:  0.95,
 		MaxNewTokens: 200,
 		UserToken:    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjExMUBnbWFpbC5jb20iLCJleHAiOjE3MDg2NjE4NjR9.0IaBfwOrjEo5XCkrvPcJJ4dgdzDf6p5hxSFHvx1GygQ",
 	}
-	result, err := CallLLM(reqBody)
+	result, err := CallLLM3(reqBody)
 	fmt.Println(111111, string(result), err)
 }
 
