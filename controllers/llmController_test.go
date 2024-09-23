@@ -18,6 +18,16 @@ func TestCallLLM3(t *testing.T) {
 	fmt.Println(111111, string(result), err)
 }
 
+func TestVerticalLLM(t *testing.T) {
+	reqBody := common.ReqLLM3{
+		Prompt:       "Write a quicksort algorithm in Golang.",
+		MaxNewTokens: 200,
+		UserToken:    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjExMUBnbWFpbC5jb20iLCJleHAiOjE3MDg2NjE4NjR9.0IaBfwOrjEo5XCkrvPcJJ4dgdzDf6p5hxSFHvx1GygQ",
+	}
+	result, err := VerticalLLM(reqBody)
+	fmt.Println(111111, string(result), err)
+}
+
 func TestCreateLLMJob(t *testing.T) {
 	reqBody := common.ReqCreateLlmJob{
 		JobName:   "zckLLM115",

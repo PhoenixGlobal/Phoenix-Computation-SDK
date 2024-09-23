@@ -10,6 +10,7 @@ import (
 
 //const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const CallLLMURL3 string = "https://www.phoenix.global/sdk/computation/LLM/callLLM3"
+const VerticalLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/verticalLLM"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenBaseParam"
 const GenSDXLImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLImage"
 const GenSDXLParamURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenSDXLParam"
@@ -42,6 +43,19 @@ func CallLLM3(reqBody common.ReqLLM3) (json.RawMessage, error) {
 		return nil, err
 	}
 	result, err := util.SendHttpPostForLLM(CallLLMURL3, reqJson, reqBody.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// VerticalLLM  VerticalLLM api
+func VerticalLLM(reqBody common.ReqLLM3) (json.RawMessage, error) {
+	reqJson, err := json.Marshal(reqBody)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHttpPostForLLM(VerticalLLMURL, reqJson, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
