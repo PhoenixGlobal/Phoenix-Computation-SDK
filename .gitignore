@@ -10,3 +10,4 @@ dashboard-agent
 .idea
 sdk_test.go
 *.csv
+main.go

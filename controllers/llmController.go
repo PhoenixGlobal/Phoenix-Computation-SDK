@@ -8,7 +8,7 @@ import (
 	"github.com/PhoenixGlobal/Phoenix-Computation-SDK/common"
 )
 
-//const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
+// const CallLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/callLLM"
 const CallLLMURL3 string = "https://www.phoenix.global/sdk/computation/LLM/callLLM3"
 const VerticalLLMURL string = "https://www.phoenix.global/sdk/computation/LLM/verticalLLM"
 const GenImageURL string = "https://www.phoenix.global/sdk/computation/LLM/callGenBaseParam"
@@ -23,26 +23,13 @@ const QueryLLMCountURL string = "https://www.phoenix.global/sdk/computation/LLM/
 const QueryLLMTokensBalanceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMTokensBalance"
 const QueryLLMFreeTokensBalanceURL string = "https://www.phoenix.global/sdk/computation/LLM/queryLLMFreeTokensBalance"
 
-//// CallLLM  call LLM api
-//func CallLLM(reqBody common.ReqLLM) (json.RawMessage, error) {
-//	reqJson, err := json.Marshal(reqBody)
-//	if err != nil {
-//		return nil, err
-//	}
-//	result, err := util.SendHttpPostForLLM(CallLLMURL, reqJson, reqBody.UserToken)
-//	if err != nil {
-//		return nil, err
-//	}
-//	return result, nil
-//}
-
 // CallLLM3  call LLM api
 func CallLLM3(reqBody common.ReqLLM3) (json.RawMessage, error) {
 	reqJson, err := json.Marshal(reqBody)
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(CallLLMURL3, reqJson, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(CallLLMURL3, reqJson, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +42,7 @@ func VerticalLLM(reqBody common.ReqLLM3) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(VerticalLLMURL, reqJson, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(VerticalLLMURL, reqJson, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -156,26 +143,13 @@ func QueryLLMFreeTokensBalance(token string) (llmTokens float64, e error) {
 	return
 }
 
-// GenImage  call gen image api
-func GenImage(reqBody common.ReqGenImage) (json.RawMessage, error) {
-	reqJson, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHttpPostForLLM(GenImageURL, reqJson, reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
 // GenSDXLImage  call gen SDXL image api
-func GenSDXLImage(reqBody common.ReqGenSDXLImage) (json.RawMessage, error) {
+func GenSDXLImage(reqBody common.ReqGenImgSDXL) (json.RawMessage, error) {
 	reqJSON, err := json.Marshal(reqBody)
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(GenSDXLImageURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(GenSDXLImageURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -188,7 +162,7 @@ func GenSDXLParam(reqBody common.ReqGenSDXLParam) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(GenSDXLParamURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(GenSDXLParamURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -201,7 +175,7 @@ func TextToMotion(reqBody common.ReqTextToMotion) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(TextToMotionURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(TextToMotionURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -214,7 +188,7 @@ func ImgToMotion(reqBody common.ReqImgToMotion) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(ImgToMotionURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(ImgToMotionURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
@@ -227,7 +201,7 @@ func ImgToPrompt(reqBody common.ReqImgToPrompt) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHttpPostForLLM(ImgToPromptURL, reqJSON, reqBody.UserToken)
+	result, err := util.SendHTTPPostForLLM(ImgToPromptURL, reqJSON, reqBody.UserToken)
 	if err != nil {
 		return nil, err
 	}
