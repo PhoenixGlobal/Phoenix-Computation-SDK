@@ -85,22 +85,22 @@ type ReqGenVideo struct {
 }
 
 func TestGenMotion(t *testing.T) {
-	reqBody := common.ReqTextToMotion{
+	reqBody := common.ReqTxt2Motion{
 		Prompt:        "iron man skiing on steep slope",
 		NegativePromt: "blurry",
 		UserToken:     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjExMUBnbWFpbC5jb20iLCJleHAiOjE3MDY2MTAyNTN9.k7nc5Ev_YUFKd5ciGSQZZ0Y3yfNQ6_gy9vY8WuBBtOs",
 	}
-	result, err := TextToMotion(reqBody)
+	result, err := Txt2Motion(reqBody)
 	fmt.Println(result, err)
 }
 
 func TestGenSDXl(t *testing.T) {
-	reqBody := common.ReqGenSDXLParam{
+	reqBody := common.ReqGenImgSDXL{
 		Prompt:        "iron man skiing on steep slope",
 		NegativePromt: "blurry",
 		UserToken:     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjExMUBnbWFpbC5jb20iLCJleHAiOjE3MDg5NDYzNzJ9._5nm-dNuxTRmvdAESbQW7HlXPvGmc3g2EoFz2d5NL_0",
 	}
-	result, err := GenSDXLParam(reqBody)
+	result, err := GenImgSDXL(reqBody)
 	fmt.Println(result, err)
 }
 

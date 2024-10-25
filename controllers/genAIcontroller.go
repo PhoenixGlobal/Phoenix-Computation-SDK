@@ -16,6 +16,8 @@ const (
 	genImgMethod     = "genImg"
 	genImgSDXLMethod = "genImgSDXL"
 	genImgFluxMethod = "genImgFlux"
+	txt2MotionMethod = "txt2Motion"
+	img2MotionMethod = "img2Motion"
 )
 
 // QueryTask query task by task id
@@ -66,6 +68,33 @@ func GenImgFlux(reqJSON common.ReqGenImgFlux) (json.RawMessage, error) {
 	}
 	rawURL := fmt.Sprint(apiEndpoint, genAIEndPoint, genImgFluxMethod)
 	result, err := util.SendHTTPPostForLLM(rawURL, reqBody, reqJSON.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// Txt2Motion  call text to motion api
+func Txt2Motion(reqJSON common.ReqTxt2Motion) (json.RawMessage, error) {
+	reqBody, err := json.Marshal(reqJSON)
+	if err != nil {
+		return nil, err
+	}
+	rawURL := fmt.Sprint(apiEndpoint, genAIEndPoint, txt2MotionMethod)
+	result, err := util.SendHTTPPostForLLM(rawURL, reqBody, reqJSON.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// Img2Motion  call img to motion api
+func Img2Motion(reqJSON common.ReqImg2Motion) (json.RawMessage, error) {
+	reqBody, err := json.Marshal(reqJSON)
+	if err != nil {
+		return nil, err
+	}
+	result, err := util.SendHTTPPostForLLM(ImgToMotionURL, reqBody, reqJSON.UserToken)
 	if err != nil {
 		return nil, err
 	}

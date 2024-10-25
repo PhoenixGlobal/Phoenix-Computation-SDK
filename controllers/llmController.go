@@ -143,58 +143,6 @@ func QueryLLMFreeTokensBalance(token string) (llmTokens float64, e error) {
 	return
 }
 
-// GenSDXLImage  call gen SDXL image api
-func GenSDXLImage(reqBody common.ReqGenImgSDXL) (json.RawMessage, error) {
-	reqJSON, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHTTPPostForLLM(GenSDXLImageURL, reqJSON, reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
-// GenSDXLParam  call gen SDXL image api
-func GenSDXLParam(reqBody common.ReqGenSDXLParam) (json.RawMessage, error) {
-	reqJSON, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHTTPPostForLLM(GenSDXLParamURL, reqJSON, reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
-// TextToMotion  call text to motion api
-func TextToMotion(reqBody common.ReqTextToMotion) (json.RawMessage, error) {
-	reqJSON, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHTTPPostForLLM(TextToMotionURL, reqJSON, reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
-// ImgToMotion  call img to motion api
-func ImgToMotion(reqBody common.ReqImgToMotion) (json.RawMessage, error) {
-	reqJSON, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHTTPPostForLLM(ImgToMotionURL, reqJSON, reqBody.UserToken)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
 // ImgToPrompt  call img to prompt api
 func ImgToPrompt(reqBody common.ReqImgToPrompt) (json.RawMessage, error) {
 	reqJSON, err := json.Marshal(reqBody)

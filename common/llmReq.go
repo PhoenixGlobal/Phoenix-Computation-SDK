@@ -20,17 +20,18 @@ type ReqCreateLlmJob struct {
 	TokensNum int64  `json:"tokensNum"`                               //本次购买llm对话次数
 }
 
-// ReqTextToMotion TextToMotion request parameters
-type ReqTextToMotion struct {
+// ReqTxt2Motion TextToMotion request parameters
+type ReqTxt2Motion struct {
+	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
 	Prompt        string `json:"prompt"`                            //prompt, not empty
 	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
-	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
 }
 
-// ReqImgToMotion ImgToMotion request parameters
-type ReqImgToMotion struct {
-	ImagePath string `json:"image_path"`                        //image path, not empty
+// ReqImg2Motion ImgToMotion request parameters
+type ReqImg2Motion struct {
 	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	ImagePath string `json:"image_path"`                        //image path, not empty
+	Prompt    string `json:"prompt"`                            //prompt, not empty
 }
 
 // ReqGenSDXLParam gen SDXL by parameters
