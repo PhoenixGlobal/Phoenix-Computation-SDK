@@ -18,6 +18,8 @@ const (
 	genImgFluxMethod = "genImgFlux"
 	txt2MotionMethod = "txt2Motion"
 	img2MotionMethod = "img2Motion"
+	cogVideoMethod   = "cogVideo"
+	pyramidMethod    = "pyramid"
 )
 
 // QueryTask query task by task id
@@ -94,7 +96,36 @@ func Img2Motion(reqJSON common.ReqImg2Motion) (json.RawMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := util.SendHTTPPostForLLM(ImgToMotionURL, reqBody, reqJSON.UserToken)
+	rawURL := fmt.Sprint(apiEndpoint, genAIEndPoint, img2MotionMethod)
+	result, err := util.SendHTTPPostForLLM(rawURL, reqBody, reqJSON.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// CogVideo Generating a gif by CogVideo mode
+func CogVideo(reqJSON common.ReqCogVideo) (json.RawMessage, error) {
+	reqBody, err := json.Marshal(reqJSON)
+	if err != nil {
+		return nil, err
+	}
+	rawURL := fmt.Sprint(apiEndpoint, genAIEndPoint, cogVideoMethod)
+	result, err := util.SendHTTPPostForLLM(rawURL, reqBody, reqJSON.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// Pyramid Generating a gif by Pyramid mode
+func Pyramid(reqJSON common.ReqPyramid) (json.RawMessage, error) {
+	reqBody, err := json.Marshal(reqJSON)
+	if err != nil {
+		return nil, err
+	}
+	rawURL := fmt.Sprint(apiEndpoint, genAIEndPoint, pyramidMethod)
+	result, err := util.SendHTTPPostForLLM(rawURL, reqBody, reqJSON.UserToken)
 	if err != nil {
 		return nil, err
 	}

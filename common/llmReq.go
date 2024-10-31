@@ -1,5 +1,12 @@
 package common
 
+// ReqBuyLlmToken the request parameters of buying LLM token
+type ReqBuyLlmToken struct {
+	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	JobName   string `json:"jobName" example:"Buy LLM Token"`   //job name
+	TokensNum int64  `json:"tokensNum"`                         //token num
+}
+
 // ReqLLM  LLM request parameters
 type ReqLLM struct {
 	Prompt       string  `json:"prompt" example:"Funniest joke ever:"` //prompt, not empty
@@ -13,50 +20,4 @@ type ReqLLM3 struct {
 	Prompt       string `json:"prompt" example:"Funniest joke ever:"` //prompt, not empty
 	MaxNewTokens int    `json:"max_new_tokens" example:"200"`         //tokens, not empty
 	UserToken    string `json:"user_token" example:"xxxxxxxxxxxx"`    //user_token, not empty
-}
-
-type ReqCreateLlmJob struct {
-	JobName   string `json:"jobName" example:"Millionaires' Problem"` //job name
-	TokensNum int64  `json:"tokensNum"`                               //本次购买llm对话次数
-}
-
-// ReqTxt2Motion TextToMotion request parameters
-type ReqTxt2Motion struct {
-	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
-	Prompt        string `json:"prompt"`                            //prompt, not empty
-	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
-}
-
-// ReqImg2Motion ImgToMotion request parameters
-type ReqImg2Motion struct {
-	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
-	ImagePath string `json:"image_path"`                        //image path, not empty
-	Prompt    string `json:"prompt"`                            //prompt, not empty
-}
-
-// ReqGenSDXLParam gen SDXL by parameters
-type ReqGenSDXLParam struct {
-	UidName              string  `json:"uidname" example:"111@gmail.com"`
-	Prompt               string  `json:"prompt" example:"a blue dog"`       //prompt, not empty
-	NegativePromt        string  `json:"negative_prompt"`                   //tokens, not empty
-	UserToken            string  `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
-	NSteps               int     `json:"n_steps" example:"20"`
-	GuidanceScale        float64 `json:"guidance_scale" example:"8"` // float, 0 to 10
-	Seed                 int     `json:"seed" example:"1"`           // int, >0
-	PipeName             string  `json:"pipe_name" example:"txt2img"`
-	LoraPathList         string  `json:"lora_path_list" example:"https://xxxx"`
-	LoraWeightList       string  `json:"lora_weight_list" example:"0.8"`
-	TextualInversionPath string  `json:"textual_inversion_path" example:"without"`
-	LoraScale            float64 `json:"lora_scale" example:"0.8"`
-	Size                 string  `json:"size" example:"1024^*^1024"`
-	ClipSkip             int     `json:"clip_skip" example:"1"`
-	InitImage            string  `json:"init_image" example:"https://xxx.jpg"`
-	MaskImage            string  `json:"mask_image" example:"https://xxx.jpg"`
-}
-
-// ReqImgToPrompt ImgToPrompt parameters
-type ReqImgToPrompt struct {
-	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"`    //user_token, not empty
-	ImagePath string `json:"image_path" example:"https://xxx.jpg"` //image path, not empty
-	Prompt    string `json:"prompt" example:"Funniest joke ever:"` //prompt, not empty
 }

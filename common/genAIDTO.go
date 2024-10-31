@@ -35,3 +35,29 @@ type ReqGenImgFlux struct {
 	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"`   //user_token, not empty
 	Prompt    string `json:"prompt" example:"a flying airplane:"` //prompt, not empty
 }
+
+// ReqTxt2Motion TextToMotion request parameters
+type ReqTxt2Motion struct {
+	UserToken     string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	Prompt        string `json:"prompt"`                            //prompt, not empty
+	NegativePromt string `json:"negative_prompt"`                   //tokens, not empty
+}
+
+// ReqImg2Motion ImgToMotion request parameters
+type ReqImg2Motion struct {
+	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	ImagePath string `json:"image_path"`                        //image path, not empty
+	Prompt    string `json:"prompt"`                            //prompt, not empty
+}
+
+// ReqCogVideo text to motion request parameters
+type ReqCogVideo struct {
+	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	Prompt    string `json:"prompt"`                            //prompt, not empty
+}
+
+// ReqPyramid pyramid request parameters
+type ReqPyramid struct {
+	UserToken string `json:"user_token" example:"xxxxxxxxxxxx"` //user_token, not empty
+	Prompt    string `json:"prompt"`                            //prompt, not empty
+}

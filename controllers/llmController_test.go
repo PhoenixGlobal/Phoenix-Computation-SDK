@@ -43,7 +43,7 @@ func TestCreateLLMJob(t *testing.T) {
 	}
 	tokenStr := tokenMap["token"].(string)
 
-	res, _ := CreateLLMJob(reqBody, tokenStr)
+	res, _ := BuyLLMToken(reqBody, tokenStr)
 	fmt.Println("res", string(res))
 }
 
@@ -64,18 +64,6 @@ func TestQueryLLMPrice(t *testing.T) {
 	err = json.Unmarshal(resPrice, &priceMap)
 	priceStr := priceMap["price"].(string)
 	fmt.Println("price=", priceStr)
-}
-
-func TestQueryLLMBuyCount(t *testing.T) {
-	tokenStr := "XXXXXXXXXXXXX"
-
-	res, err := QueryLLMBuyCount(tokenStr)
-	resultMap := make(map[string]interface{})
-	fmt.Println(11111, resultMap, err)
-	err = json.Unmarshal(res, &resultMap)
-	dataMap := resultMap["data"].(map[string]interface{})
-	buyCount := dataMap["count"].(float64)
-	fmt.Println(22222, buyCount, err)
 }
 
 type ReqGenVideo struct {
@@ -101,15 +89,5 @@ func TestGenSDXl(t *testing.T) {
 		UserToken:     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjExMUBnbWFpbC5jb20iLCJleHAiOjE3MDg5NDYzNzJ9._5nm-dNuxTRmvdAESbQW7HlXPvGmc3g2EoFz2d5NL_0",
 	}
 	result, err := GenImgSDXL(reqBody)
-	fmt.Println(result, err)
-}
-
-func TestImgToPrompt(t *testing.T) {
-	reqBody := common.ReqImgToPrompt{
-		Prompt:    "",
-		ImagePath: "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/a08dca98-b98f-4c0c-9475-d9719d4aae1f/original=true/best.jpeg",
-		UserToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IjExMUBnbWFpbC5jb20iLCJleHAiOjE3MTI2NDY3MjR9.K7i3aaWMmfcPzaBUam5nrIhiVaAMfubFdjdaYcOb8M0",
-	}
-	result, err := ImgToPrompt(reqBody)
 	fmt.Println(result, err)
 }
