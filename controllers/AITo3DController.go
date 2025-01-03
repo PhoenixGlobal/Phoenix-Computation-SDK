@@ -48,21 +48,7 @@ func QueryAITo3DTaskModelURL(reqBody common.ReqQueryAITo3DTaskModelURL, token st
 	return result, nil
 }
 
-
-func RefineModel(reqBody common.ReqRefineModel, token string) (json.RawMessage, error) {
-	url:=SkyNetControllerURL+"/deepLearn/refineModel"
-	reqJson, err := json.Marshal(reqBody)
-	if err != nil {
-		return nil, err
-	}
-	result, err := util.SendHttpPost(url, reqJson, token)
-	if err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
-////The value for animation can only be preset:walk, preset:run, or preset:dive.
+////The value for animation can only be preset:idle,preset:walk,preset:climb,preset:jump,preset:run,preset:slash,preset:shoot,preset:hurt,preset:fall,preset:turn.
 func Animate(reqBody common.ReqAnimateModel, token string) (json.RawMessage, error) {
 	url:=SkyNetControllerURL+"/deepLearn/animateTrip3d"
 	reqJson, err := json.Marshal(reqBody)

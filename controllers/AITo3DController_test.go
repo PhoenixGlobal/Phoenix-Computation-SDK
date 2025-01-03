@@ -80,16 +80,6 @@ func TestQueryAITo3DTaskModelURL(t *testing.T) {
 	fmt.Println(111111, string(result), err)
 }
 
-func TestRefineModel(t *testing.T) {
-	token := GetToken()
-	reqBody := common.ReqRefineModel{
-		JobID:  "21559616267152752126804958740584316039613520634800696977564855889808589769897",
-		TaskID: "b98f8c0d-5b02-4195-a750-de5fc7c1f7bf",
-	}
-	result, err := RefineModel(reqBody,token)
-	fmt.Println(111111, string(result), err)
-}
-
 func TestAnimate(t *testing.T) {
 	token := GetToken()
 	reqBody := common.ReqAnimateModel{
