@@ -13,6 +13,7 @@ const (
 	llmEndPoint      = "LLM/"
 	buyLLMTokenMehod = "buyLLMToken"
 	llmPriceMethod   = "queryLLMPrice"
+	llmBalanceMethod = "queryLLMTokensBalance"
 	llm3Method       = "callLLM3"
 	verticalMethod   = "verticalLLM"
 )
@@ -25,6 +26,16 @@ func BuyLLMToken(reqJSON common.ReqBuyLlmToken) (json.RawMessage, error) {
 	}
 	rawURL := fmt.Sprint(apiEndpoint, llmEndPoint, buyLLMTokenMehod)
 	result, err := util.SendHTTPPostForLLM(rawURL, reqBody, reqJSON.UserToken)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+// QueryLLMTokensBalance query balance
+func QueryLLMTokensBalance(token string) (json.RawMessage, error) {
+	rawURL := fmt.Sprint(apiEndpoint, llmEndPoint, llmBalanceMethod)
+	result, err := util.SendHttpGet(rawURL, nil, token)
 	if err != nil {
 		return nil, err
 	}
